@@ -51,7 +51,6 @@ const App = () => {
             todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
         )
         setTodosList(updatedList)
-        setIsCheckedAll(!isNotCheckedAll(updatedList))
     }
 
     const checkedAllTodos = () => {
