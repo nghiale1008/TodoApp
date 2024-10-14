@@ -21,15 +21,17 @@ const filterByStatus = (todos = [], status = '', id = '') => {
 }
 
 const App = () => {
-    const [todosList, setTodosList] = useState([
-        { id: 1, text: 'todo 1', isCompleted: true },
-        { id: 2, text: 'todo 2', isCompleted: false }
-    ])
+    const [todosList, setTodosList] = useState(() => JSON.parse(localStorage.getItem('todosList')) || [])
+    // const [todosList, setTodosList] = useState([
+    //     { id: 1, text: 'todo 1', isCompleted: true },
+    //     { id: 2, text: 'todo 2', isCompleted: false }
+    // ])
     const [todoEditingId, setTodoEditingId] = useState('')
     const [isCheckedAll, setIsCheckedAll] = useState(false)
     const [status, setStatus] = useState('ALL')
 
     useEffect(() => {
+        localStorage.setItem('todosList', JSON.stringify(todosList))
         setIsCheckedAll(!isNotCheckedAll(todosList))
     }, [todosList])
 
